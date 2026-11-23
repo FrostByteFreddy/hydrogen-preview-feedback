@@ -1,0 +1,63 @@
+{
+  "name": "hydrogen-preview-feedback",
+  "version": "0.1.0",
+  "description": "Pin comments on your Shopify Hydrogen preview deployments. Clients click a spot, leave a comment, reply and resolve; everything is stored as metaobjects in the store itself. No extra service, no database.",
+  "keywords": [
+    "shopify",
+    "hydrogen",
+    "oxygen",
+    "feedback",
+    "review",
+    "comments",
+    "preview",
+    "react-router"
+  ],
+  "license": "MIT",
+  "author": "Moritz Burn",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrostByteFreddy/hydrogen-preview-feedback.git"
+  },
+  "bugs": "https://github.com/FrostByteFreddy/hydrogen-preview-feedback/issues",
+  "homepage": "https://github.com/FrostByteFreddy/hydrogen-preview-feedback#readme",
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./server": {
+      "types": "./dist/server.d.ts",
+      "import": "./dist/server.js"
+    },
+    "./styles.css": "./styles.css"
+  },
+  "files": [
+    "dist",
+    "styles.css"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-router": ">=7"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.28",
+    "react": "^18.3.1",
+    "react-router": "^7.16.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

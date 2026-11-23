@@ -1,0 +1,330 @@
+/*
+ * hydrogen-preview-feedback
+ * Theme it by overriding the variables below, e.g. in your own stylesheet:
+ *   .pf-root { --pf-accent: #1d4ed8; }
+ */
+.pf-root {
+  --pf-accent: #3f3a39;
+  --pf-accent-text: #fff;
+  --pf-resolved: #3f7d4e;
+  --pf-draft: #b5f28f;
+  --pf-text: #222;
+  --pf-muted: #6f6f6a;
+  --pf-border: #cfc8c6;
+  --pf-subtle: #f1eeed;
+  --pf-overlay: rgba(0, 0, 0, 0.06);
+  --pf-surface: #fff;
+}
+.pf-root {
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--pf-text);
+}
+.pf-root *,
+.pf-root *::before,
+.pf-root *::after {
+  box-sizing: border-box;
+}
+.pf-root button {
+  font: inherit;
+  cursor: pointer;
+}
+.pf-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  z-index: 9000;
+}
+.pf-pin {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  margin: -14px 0 0 -14px;
+  border-radius: 50% 50% 50% 0;
+  border: 2px solid #fff;
+  background: var(--pf-accent);
+  color: var(--pf-accent-text);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+  padding: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.15s;
+}
+.pf-pin:hover,
+.pf-pin.is-active {
+  transform: scale(1.15);
+}
+.pf-pin.is-done {
+  background: var(--pf-resolved);
+  opacity: 0.6;
+}
+.pf-pin.is-draft {
+  background: var(--pf-draft);
+  color: var(--pf-text);
+  pointer-events: none;
+}
+.pf-pop {
+  position: absolute;
+  z-index: 9002;
+  width: 320px;
+  max-height: 70vh;
+  overflow: auto;
+  background: var(--pf-surface);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  padding: 12px 14px 14px;
+}
+.pf-pop.is-floating {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.pf-pop-head,
+.pf-panel-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.pf-pop-head strong,
+.pf-panel-head strong {
+  flex: 1;
+  color: var(--pf-accent);
+}
+.pf-close {
+  border: 0;
+  background: none;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--pf-muted);
+  padding: 0 4px;
+}
+.pf-form {
+  display: grid;
+  gap: 8px;
+}
+.pf-form textarea,
+.pf-form input {
+  width: 100%;
+  font: inherit;
+  border: 1px solid var(--pf-border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+.pf-field {
+  display: grid;
+  gap: 4px;
+}
+.pf-field span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--pf-accent);
+}
+.pf-form textarea:focus,
+.pf-form input:focus {
+  outline: 2px solid var(--pf-accent);
+  outline-offset: -1px;
+}
+.pf-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pf-primary,
+.pf-ghost {
+  border-radius: 999px;
+  padding: 7px 14px;
+  border: 1px solid var(--pf-accent);
+}
+.pf-primary {
+  background: var(--pf-accent);
+  color: var(--pf-accent-text);
+}
+.pf-ghost {
+  background: var(--pf-surface);
+  color: var(--pf-accent);
+}
+.pf-primary:disabled,
+.pf-ghost:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.pf-meta {
+  margin: 0;
+  font-size: 12px;
+  color: var(--pf-muted);
+  overflow-wrap: anywhere;
+}
+.pf-error {
+  margin: 0;
+  font-size: 13px;
+  color: #b3261e;
+}
+.pf-thread {
+  display: grid;
+  gap: 10px;
+}
+.pf-msg {
+  border-left: 3px solid var(--pf-subtle);
+  padding-left: 10px;
+}
+.pf-msg-head {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  margin: 0 0 2px;
+}
+.pf-msg-head time {
+  font-size: 12px;
+  color: var(--pf-muted);
+}
+.pf-msg-text {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.pf-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9001;
+  cursor: crosshair;
+  background: var(--pf-overlay);
+}
+.pf-hint {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: calc(100vw - 24px);
+  background: var(--pf-accent);
+  color: var(--pf-accent-text);
+  padding: 8px 10px 8px 16px;
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  cursor: default;
+}
+.pf-hint button {
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: none;
+  color: var(--pf-accent-text);
+  border-radius: 999px;
+  padding: 4px 12px;
+}
+.pf-bar {
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  z-index: 9003;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 999px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+.pf-panel {
+  position: fixed;
+  left: 16px;
+  bottom: 72px;
+  z-index: 9003;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  max-height: min(60vh, 560px);
+  overflow: auto;
+  background: var(--pf-surface);
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  padding: 12px 14px;
+}
+.pf-panel-head label {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--pf-muted);
+}
+.pf-empty {
+  margin: 0;
+  color: var(--pf-muted);
+}
+.pf-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 4px;
+}
+.pf-list button {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  padding: 8px;
+}
+.pf-list button:hover {
+  background: var(--pf-subtle);
+}
+.pf-list button.is-done {
+  opacity: 0.55;
+}
+.pf-num {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--pf-accent);
+  color: var(--pf-accent-text);
+  font-size: 12px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+}
+.pf-list .is-done .pf-num {
+  background: var(--pf-resolved);
+}
+.pf-text {
+  display: grid;
+  gap: 2px;
+  overflow-wrap: anywhere;
+}
+.pf-text small {
+  color: var(--pf-muted);
+}
+@media (max-width: 600px) {
+  .pf-pop,
+  .pf-pop.is-floating {
+    position: fixed;
+    left: 0 !important;
+    right: 0;
+    top: auto !important;
+    bottom: 0;
+    width: auto;
+    transform: none;
+    border-radius: 16px 16px 0 0;
+    max-height: 75vh;
+  }
+}
+
+.pf-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
